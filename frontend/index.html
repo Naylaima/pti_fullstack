@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="header-text">
+            <h1>Login</h1>
+        </div>
+
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <div class="input-group">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" id="username" placeholder="Username" required>
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="password" placeholder="Password" required>
+            </div>
+
+            <button type="submit" class="login-button">Login</button>
+        </form>
+    </div>
+
+    <script>
+
+        async function onLoad() {
+            // cek user
+            try {
+                const res = await fetch('http://localhost:5000/api/auth/user-exist');
+                if (res.ok) {
+                    const { data } = await res.json();
+                    console.log(data)
+                    if (data.length == 0) {
+                        window.location.href = 'register.html';
+                    }
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        async function handleLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const res = await fetch('http://localhost:5000/api/auth/login', {
+                    method: 'POST',
+                    body: JSON.stringify({ username, password }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                });
+
+                if (res.ok) {
+                    const data = await res.json();
+                    alert(data.message);
+                    window.location.href = 'homepage.html';
+                } else {
+                    const data = await res.json();
+                    alert(data.message);
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Terjadi kesalahan saat melakukan login.');
+            }
+        }
+
+        window.onload = function () {
+            onLoad();
+        }
+    </script>
+</body>
+
+</html>

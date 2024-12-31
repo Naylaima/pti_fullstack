@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Inventori</title>
+    <link rel="stylesheet" href="listbarang.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-left">
+                <button class="back-button" onclick="window.location.href='lokasi.html'">
+                    <i class="fas fa-arrow-left"></i>
+                    Back
+                </button>
+                <h1>List Barang</h1>
+            </div>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search...">
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Kode alat</th>
+                    <th>Nama Barang</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>01</td>
+                    <td>001A</td>
+                    <td>CCTV</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-button" onclick="openEditListDialog('01', '001A', 'Peralatan 1')">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="action-button" onclick="openDeleteListDialog()">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button class="add-button" onclick="showAddListDialog()">
+            <i class="fas fa-plus"></i> Tambah
+        </button>
+    </div>
+
+    <!-- Add List Dialog -->
+    <div class="dialog-overlay" id="addListBarang">
+        <div class="dialog">
+            <div class="dialog-header">
+                <h2>Tambah Data Inventori</h2>
+            </div>
+            <div class="dialog-content">
+                <form id="listForm">
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="kodeAlat">Kode Alat</label>
+                            <input type="text" id="kodeAlat" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="namaBarang">Nama Barang</label>
+                            <input type="text" id="namaBarang" class="form-input" required>
+                        </div>
+
+                    </div>
+
+                    <div class="dialog-actions">
+                        <button type="button" class="btn-cancel" onclick="closeListDialog()">Cancel</button>
+                        <button type="submit" class="btn-save">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- edit List dialog -->
+    <div class="dialog-overlay" id="editListDialog" style="display: none;">
+        <div class="dialog">
+            <div class="dialog-header">
+                <h2>Edit Data List Barang</h2>
+            </div>
+            <div class="dialog-content">
+                <form id="editForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="editId">ID</label>
+                            <input type="text" id="editId" class="form-input" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="editKodeAlat">Kode Alat</label>
+                            <input type="text" id="editKodeAlat" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editNamaBarang">Nama Barang</label>
+                            <input type="text" id="editNamaBarang" class="form-input" required>
+                        </div>
+                    </div>
+
+                    <div class="dialog-actions">
+                        <button type="button" class="btn-cancel" onclick="closeEditListDialog()">Cancel</button>
+                        <button type="submit" class="btn-save">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- delete List Barang dialog -->
+    <div class="dialog-overlay-delete" id="deleteListDialog" style="display: none;">
+        <div class="dialog-delete">
+            <div class="dialog-header-delete">
+                <span>Anda yakin akan menghapus data ini?</span>
+            </div>
+            <div class="dialog-actions-delete">
+                <button class="btn-delete" onclick="confirmDeleteList()">Delete</button>
+                <button class="btn-cancel-delete" onclick="closeDeleteListDialog()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="listbarang.js"></script>
+</body>
+
+</html>

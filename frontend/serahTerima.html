@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Inventori</title>
+    <link rel="stylesheet" href="serahTerima.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-left">
+                <button class="back-button" onclick="window.location.href='homepage.html'">
+                    <i class="fas fa-arrow-left"></i>
+                    Back
+                </button>
+                <h1>Berita Acara Serah Terima</h1>
+            </div>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search...">
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nomor Berita</th>
+                    <th>Nama Berita</th>
+                    <th>From Unit</th>
+                    <th>To Unit</th>
+                    <th>Keterangan</th>
+                    <th>File</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>01</td>
+                    <td>001A</td>
+                    <td>Jasa</td>
+                    <td>Unit Electro</td>
+                    <td>Unit Electro</td>
+                    <td>Selesai</td>
+                    <td>
+                        <i class="fas fa-book"></i>
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-button"
+                                onclick="openEditBeritaDialog('01', '001A', 'Jasa', 'Unit Electro', 'Unit Electro', 'Selesai')">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="action-button" onclick="openDeleteBeritaDialog()">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>01</td>
+                    <td>001A</td>
+                    <td>Jasa</td>
+                    <td>Unit Electro</td>
+                    <td>Unit Electro</td>
+                    <td>Selesai</td>
+                    <td>
+                        <i class="fas fa-book"></i>
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-button"
+                                onclick="openEditBeritaDialog('01', '001A', 'Jasa', 'Unit Electro', 'Unit Electro', 'Selesai')">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="action-button" onclick="openDeleteBeritaDialog()">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>01</td>
+                    <td>001A</td>
+                    <td>Jasa</td>
+                    <td>Unit Electro</td>
+                    <td>Unit Electro</td>
+                    <td>Selesai</td>
+                    <td>
+                        <i class="fas fa-book"></i>
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-button"
+                                onclick="openEditBeritaDialog('01', '001A', 'Jasa', 'Unit Electro', 'Unit Electro', 'Selesai')">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="action-button" onclick="openDeleteBeritaDialog()">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button class="add-button" onclick="showAddBeritaDialog()">
+            <i class="fas fa-plus"></i> Tambah
+        </button>
+    </div>
+
+    <!-- Add Inventory Dialog -->
+    <div class="dialog-overlay" id="addBeritaAcaraDialog">
+        <div class="dialog">
+            <div class="dialog-header">
+                <h2>Tambah Data Berita Acara</h2>
+            </div>
+            <div class="dialog-content">
+                <form id="beritaAcara" enctype="multipart/form-data">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="noberita">No Berita</label>
+                            <input type="text" id="noberita" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="namaberita">Nama Berita</label>
+                            <input type="text" id="namaberita" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fromunit">From Unit</label>
+                            <input type="text" id="fromunit" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tounit">To Unit</label>
+                            <input type="text" id="tounit" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="keterangan">Keterangan</label>
+                            <input type="text" id="keterangan" class="form-input" required>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fileUpload" class="file-label">Upload File</label>
+                        <input type="file" id="fileUpload" class="form-control-file" required>
+                    </div>
+
+                    <div class="dialog-actions">
+                        <button type="button" class="btn-cancel" onclick="closeBeritaDialog()">Cancel</button>
+                        <button type="submit" class="btn-save">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- edit berita -->
+    <div class="dialog-overlay" id="editBeritaDialog" style="display: none;">
+        <div class="dialog">
+            <div class="dialog-header">
+                <h3>Edit Data Berita Acara</h3>
+            </div>
+            <div class="dialog-content">
+                <form id="editForm" enctype="multipart/form-data">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="editId">ID</label>
+                            <input type="text" id="editId" class="form-input" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="editNoBerita">No Berita</label>
+                            <input type="text" id="editNoBerita" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editNamaBerita">Nama Berita</label>
+                            <input type="text" id="editNamaBerita" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editFromUnit">From Unit</label>
+                            <input type="text" id="editFromUnit" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editToUnit">To Unit</label>
+                            <input type="text" id="editToUnit" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editKeterangan">Keterangan</label>
+                            <input type="text" id="editKeterangan" class="form-input" required>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="editFile">Upload File</label>
+                        <input type="file" id="editFile" class="form-input">
+                    </div>
+
+                    <div class="dialog-actions">
+                        <button type="button" class="btn-cancel" onclick="closeEditBeritaDialog()">Cancel</button>
+                        <button type="submit" class="btn-save">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- delete berita -->
+    <div class="dialog-overlay-delete" id="deleteBeritaDialog" style="display: none;">
+        <div class="dialog-delete">
+            <div class="dialog-header-delete">
+                <span>Anda yakin akan menghapus data ini?</span>
+            </div>
+            <div class="dialog-actions-delete">
+                <button class="btn-delete" onclick="confirmDeleteBerita()">Delete</button>
+                <button class="btn-cancel-delete" onclick="closeDeleteBeritaDialog()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="serahTerima.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Inventori - Homepage</title>
+    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="welcome-text">
+                <h1>Welcome, Admin!</h1>
+            </div>
+            <div class="system-info">
+                <i class="fas fa-box"></i>
+                <span>Sistem Inventori</span>
+            </div>
+        </header>
+
+        <div class="menu-grid">
+            <div class="menu-item" onclick="window.location.href='inventory.html'">
+                <i class="fas fa-boxes"></i>
+                <span>Daftar Inventori</span>
+            </div>
+
+            <div class="menu-item" onclick="window.location.href='serahTerima.html'">
+                <i class="fas fa-truck-loading"></i>
+                <span>Berita Acara Serah Terima Barang</span>
+            </div>
+
+            <div class="menu-item" onclick="window.location.href='beritaAcara.html'">
+                <i class="fas fa-clipboard-list"></i>
+                <span>Berita Acara Inventori</span>
+            </div>
+
+            <div class="menu-item" onclick="window.location.href='lokasi.html'">
+                <i class="fas fa-location-dot"></i>
+                <span>Lokasi</span>
+            </div>
+
+            <div class="menu-item" onclick="window.location.href='logbook.html'">
+                <i class="fas fa-book"></i>
+                <span>Logbook</span>
+            </div>
+        </div>
+
+        <div class="logout-container">
+            <button onclick="logout()" class="logout-button">
+                <i class="fas fa-sign-out-alt"></i>
+                Logout
+            </button>
+        </div>
+
+        <div id="logout-popup" class="popup">
+            <div class="popup-content">
+                <p>Apakah anda yakin ingin <strong>Logout</strong>?</p>
+                <div class="popup-buttons">
+                    <button onclick="cancelLogout()" class="cancel-button">Cancel</button>
+                    <button onclick="confirmLogout()" class="confirm-button">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function logout() {
+            const popup = document.getElementById('logout-popup');
+            popup.style.display = 'flex';
+        }
+
+        function cancelLogout() {
+            const popup = document.getElementById('logout-popup');
+            popup.style.display = 'none';
+        }
+
+        async function confirmLogout() {
+            try {
+                const res = await fetch('http://localhost:5000/api/auth/logout');
+                if (res.ok) {
+                    const { message } = await res.json();
+                    alert(message);
+                    window.location.href = 'index.html';
+                } else {
+                    const { message } = await res.json();
+                    alert(message);
+                }
+
+            } catch (error) {
+
+            }
+        }
+
+    </script>
+</body>
+
+</html>

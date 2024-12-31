@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="header-text">
+            <h1>Register</h1>
+        </div>
+
+        <form id="loginForm" onsubmit="handleRegister(event)">
+            <div class="input-group">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" id="username" placeholder="Username" required>
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="password" placeholder="Password" required>
+            </div>
+
+            <button type="submit" class="login-button">Register</button>
+        </form>
+    </div>
+
+    <script>
+
+        window.onload = async function () {
+            // cek user
+            const res = await fetch('http://localhost:5000/api/auth/user-exist');
+            if (res.ok) {
+                const { data } = await res.json();
+                if (data.length > 0) {
+                    window.location.href = 'index.html';
+                }
+            }
+        }
+        async function handleRegister(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // send data to backend
+            const res = await fetch('http://localhost:5000/api/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
+
+            if (res.ok) {
+                window.location.href = 'index.html';
+            } else {
+                const data = await res.json();
+                alert(data.message);
+            }
+
+            // redirecting to homepage
+        }
+    </script>
+</body>
+
+</html>

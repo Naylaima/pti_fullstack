@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logbook - Sistem Inventori</title>
+    <link rel="stylesheet" href="logbook.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-left">
+                <button class="back-button" onclick="window.location.href='homepage.html'">
+                    <i class="fas fa-arrow-left"></i>
+                    Back
+                </button>
+                <h1>Logbook</h1>
+            </div>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search...">
+            </div>
+            <!-- <div class="system-info">
+                <i class="fas fa-box"></i>
+                <span>Sistem Inventori</span>
+            </div> -->
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>NO</th>
+                        <th>KEGIATAN</th>
+                        <th>TANGGAL</th>
+                        <th>AKSI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01</td>
+                        <td>Installasi CCTV</td>
+                        <td>29-02-2024</td>
+                        <td>
+                            <div class="action-buttons">
+                                <!-- <button class="action-button">
+                                    <i class="fas fa-edit"></i>
+                                </button> -->
+                                <button class="action-button"
+                                    onclick="openEditLogbookDialog('01', 'Installasi CCTV', '29-02-2024')">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+
+                                <!-- <button class="action-button">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button> -->
+                                <button class="action-button" onclick="openDeleteLogbookDialog()">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <button class="add-button" onclick="showAddLogbookDialog()">
+            <i class="fas fa-plus"></i> Tambah
+        </button>
+    </div>
+
+    <!-- Add Logbook Dialog -->
+    <div class="dialog-overlay" id="addLogbookDialog">
+        <div class="dialog">
+            <div class="dialog-header">
+                <h2>Tambah Data Logbook</h2>
+            </div>
+            <div class="dialog-content">
+                <form id="LogbookForm">
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="kegiatan">Kegiatan</label>
+                            <input type="text" id="kegiatan" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tanggal">Tanggal</label>
+                            <input type="text" id="tanggal" class="form-input" required>
+                        </div>
+
+                    </div>
+
+                    <div class="dialog-actions">
+                        <button type="button" class="btn-cancel" onclick="closeLogbookDialog()">Cancel</button>
+                        <button type="submit" class="btn-save">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- edit inventory dialog -->
+    <div class="dialog-overlay" id="editLogbookDialog" style="display: none;">
+        <div class="dialog">
+            <div class="dialog-header">
+                <h2>Edit Data Logbook</h2>
+            </div>
+            <div class="dialog-content">
+                <form id="editForm">
+                    <div class="form-grid">
+                        <input type="hidden" name="id" id="editId">
+                        <div class="form-group">
+                            <label for="editKegiatan">Kegiatan</label>
+                            <input type="text" id="editKegiatan" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editTanggal">Tanggal</label>
+                            <input type="text" id="editTanggal" class="form-input" required>
+                        </div>
+                    </div>
+
+                    <div class="dialog-actions">
+                        <button type="button" class="btn-cancel" onclick="closeEditLogbookDialog()">Cancel</button>
+                        <button type="submit" class="btn-save">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- delete inventory dialog -->
+    <div class="dialog-overlay-delete" id="deleteLogbookDialog" style="display: none;">
+        <div class="dialog-delete">
+            <div class="dialog-header-delete">
+                <span>Anda yakin akan menghapus data ini?</span>
+                <!-- <button class="close-button-delete" onclick="closeDeleteDialog()">&times;</button> -->
+            </div>
+            <div class="dialog-actions-delete">
+                <button class="btn-delete" onclick="confirmDeleteLogbook()">Delete</button>
+                <button class="btn-cancel-delete" onclick="closeDeleteLogbookDialog()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="logbook.js"></script>
+</body>
+
+</html>

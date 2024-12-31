@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Inventori - Homepage</title>
+    <link rel="stylesheet" href="lokasi.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <button class="back-button" onclick="window.location.href='homepage.html'">
+                <i class="fas fa-arrow-left"></i>
+                Back
+            </button>
+            <div class="welcome-text">
+                <h1>Warehouse</h1>
+            </div>
+            <div class="location">
+                <i class="fas fa-location-dot"></i>
+                <span>Lokasi</span>
+            </div>
+        </header>
+
+        <div class="menu-grid" id="menuGrid">
+            <div class="menu-item" onclick="window.location.href='listbarang.html'">
+                <i class="fas fa-location-dot"></i>
+                <span>Gudang 1</span>
+            </div>
+
+            <div class="menu-item" onclick="window.location.href='listbarang.html'">
+                <i class="fas fa-location-dot"></i>
+                <span>Gudang 2</span>
+            </div>
+
+            <div class="menu-item" onclick="window.location.href='listbarang.html'">
+                <i class="fas fa-location-dot"></i>
+                <span>Gudang 3</span>
+            </div>
+
+            <div class="menu-item" onclick="window.location.href='listbarang.html'">
+                <i class="fas fa-location-dot"></i>
+                <span>Gudang 4</span>
+            </div>
+
+            <div class="menu-item" onclick="window.location.href='listbarang.html'">
+                <i class="fas fa-location-dot"></i>
+                <span>Gudang 5</span>
+            </div>
+
+            <div class="menu-item" onclick="window.location.href='listbarang.html'">
+                <i class="fas fa-location-dot"></i>
+                <span>Gudang 6</span>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button class="add-button" onclick="showAddLokasiDialog()">
+                <i class="fas fa-plus"></i> Tambah Gudang
+            </button>
+        </div>
+    </div>
+
+    <!-- Add Lokasi Dialog -->
+    <div class="dialog-overlay" id="addLokasiDialog">
+        <div class="dialog">
+            <div class="dialog-header">
+                <h2>Tambah Lokasi</h2>
+            </div>
+            <div class="dialog-content">
+                <form id="lokasiForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="nama_lokasi">Nama Lokasi</label>
+                            <input type="text" id="nama_lokasi" class="form-input" required>
+                        </div>
+
+                        <div class="dialog-actions">
+                            <button type="button" class="btn-cancel" onclick="closeLokasiDialog()">Cancel</button>
+                            <button type="submit" class="btn-save">Save</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="lokasi.js"></script>
+</body>
+
+</html>
